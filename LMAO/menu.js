@@ -533,7 +533,8 @@ function mainmenucode() {
             if (mouseclicked) {
                 mouseclicked = false;
                 if (isfreestyle) {
-                    
+                    fshellovarset();
+                    tolunchfs();
                 } else {
                     hellovarset();
                     tolunchgame();

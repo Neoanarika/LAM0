@@ -69,7 +69,7 @@ function fsbullseyesvarset() {
     fsbpm05 = bpm * 0.5;
 }
 function freestyleloop() {
-    console.log(music);
+    if (!isleapmotionin) {
     fslaspedsec = fslaspedtime / 1000;
     if (currentpress > 0) {
         fsnowtime = new Date();
@@ -84,8 +84,9 @@ function freestyleloop() {
         var fsbps = fsnoofspacebar / fssec;
         fsbpm = fsbps * 60;
     }   
+    }
 
-        
+    
     if (fsbpm < fsbpm05) {
         bpm = fsbpm05;
     } else if (fsbpm < fsbpm06) {
@@ -149,14 +150,18 @@ function freestyleloop() {
             music = aud15;
             fsmusictime = fslaspedsec / 1.5;
         }
+        
         audio = new Audio(music);
         audio.currentTime = fsmusictime;
+        if (startspace < 2 && startspace > 0) {
         audio.play();
+        }
         gamecalulation();
         clearInterval(gameplay);
         gameplay = setInterval(function () {
             game();
         }, 1000 / fps);
+    
         
     }
         
