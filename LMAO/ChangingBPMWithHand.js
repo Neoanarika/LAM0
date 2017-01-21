@@ -68,7 +68,9 @@
           }
         }
     }
+      if (isleapmotionin){
       fsbpm = bpmToRunSong;
+      }
   }
 
   setInterval(update, 1000/60);
