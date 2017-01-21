@@ -11,9 +11,10 @@
   <script src="http://js.leapmotion.com/leap-0.6.3.min.js"> </script>
   <script>
   var handVelocitySum = 0;
-  var bpm120 = 120;
-  var velocity120 = 480;
-  var bpm;
+  var OriginalBPMOfSong = 120;
+  var velocityToRunSongAtOriginalBPM = 480;
+  var bpmToRunSong;
+  var hasHandBeenPutIn = false;
 
   var controller = new Leap.Controller({
                          enableGestures: true,
@@ -22,13 +23,21 @@
   var handStats = document.getElementById('handStats');
   var bpmStats = document.getElementById('bpm');
 
+
+
   function update () {
     var frame = controller.frame(0);
     console.log(frame.id);
 
     if (frame.id){
+      if (hasHandBeenPutIn == false){
+        bpmToRunSong = OriginalBPMOfSong;
+        bpmStats.innerHTML = bpmToRunSong;
+      }
+
       if(frame.hands.length > 0 && frame.hands[0].type == 'right'){
         //obtains the resultant velocity of the palm in each frame
+        hasHandBeenPutIn = true;
         function obtainVelocity (hand) {
 
           var handX = hand.palmVelocity[0];
@@ -58,16 +67,18 @@
           handVelocitySum = 0;
           handStats.innerHTML = handVelocityAvg;
           //rounding off to the nearest 10s.
-          bpm = Math.round(((bpm120 * handVelocityAvg) / velocity120) / 10) * 10;
-          if (bpm){
-            bpmStats.innerHTML = bpm;
+          bpmToRunSong = Math.round(((OriginalBPMOfSong * handVelocityAvg) / velocityToRunSongAtOriginalBPM) / 10) * 10;
+          if (bpmToRunSong){
+            bpmStats.innerHTML = bpmToRunSong;
           }
         }
         else {
-          handVelocityAvg = 0;
-          bpm = 0;
-          handStats.innerHTML = handVelocityAvg;
-          bpmStats.innerHTML = bpm;
+          if (hasHandBeenPutIn){
+            handVelocityAvg = 0;
+            bpmToRunSong = 0;
+            handStats.innerHTML = handVelocityAvg;
+            bpmStats.innerHTML = bpmToRunSong;
+          }
         }
     }
   }
