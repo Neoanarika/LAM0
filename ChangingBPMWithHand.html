@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body><center>
+    <p> The average velocity is : <span id="handStats"><i>velocity</i></span></p>
+    <p> The associated BPM for the song : <span id="bpm"><i>bpm</i></span></p>
+  </center></body>
+  <script src="http://js.leapmotion.com/leap-0.6.3.min.js"> </script>
+  <script>
+  var handVelocitySum = 0;
+  var bpm120 = 120;
+  var velocity120 = 480;
+  var bpm;
+
+  var controller = new Leap.Controller({
+                         enableGestures: true,
+                         frameEventName: 'animationFrame'
+                         });
+
+  var handStats = document.getElementById('handStats');
+  var bpmStats = document.getElementById('bpm');
+
+  controller.on('frame', function(frame){
+    if (frame.hands.length > 0 && frame.valid){
+
+      var hand = frame.hands[0];
+
+      //obtains the resultant velocity of the palm in each frame
+      function obtainVelocity (hand) {
+        var handX = hand.palmVelocity[0];
+        var handY = hand.palmVelocity[1];
+        handVelocity = Math.sqrt(handX * handX + handY * handY);
+        return handVelocity;
+      }
+      for (var i = 0; i < 30; i++) {
+        //getting the hand object from that specified history frame
+        var handFromFrame = controller.frame(i).hand(hand.id);
+        if( handFromFrame.valid ){
+          var handVelocity = obtainVelocity(handFromFrame);
+          handVelocitySum += handVelocity;
+        }
+      }
+      //rounding off to the nearest 10s.
+      var handVelocityAvg = Math.round(handVelocitySum / 60 / 10) * 10;
+      handVelocitySum = 0;
+      handStats.innerHTML = handVelocityAvg;
+      //rounding off to the nearest 10s.
+      bpm = Math.round((bpm120 * handVelocityAvg / velocity120) / 10) * 10;
+      bpmStats.innerHTML = bpm;
+
+    }
+
+  });
+      controller.connect();
+  </script>
+
+</html>
