@@ -98,7 +98,10 @@ function bulleyesvarset() {
     endgametitley = 175;
     count = 0;
     songno = 1;
+    gamecalulation();
+}
 
+function gamecalulation() {
     //calcuations
     if (bpm < 60) {
         framelimit = 120;
@@ -199,6 +202,7 @@ window.addEventListener("keyup", function (e) {
     "use strict";
     delete keys[e.keyCode];
     currentpress = 0;
+    fsnodoublevalue = false;
 }, false);
 
 window.addEventListener("keydown", function (e) {
@@ -251,6 +255,7 @@ function ismouseinpause(x1, x2, y1, y2) {
 
 function spacebareqv() {
     "use strict";
+    
     if (!isleapmotionin) {
         if (startspace < 1) {
             startspace = 2;
@@ -516,7 +521,9 @@ function signals() {
         }
     }
     signal = 0;
-    barsinthegame();
+    if (!isfreestyle) {
+        barsinthegame();
+    }
 }
 
 function scoringcenter() {
@@ -557,6 +564,7 @@ function render() {
     circle(player.x, player.y, player.rad, player.col, player.wid, player.strokecolor);
     if (startspace > 1) {
         isunpausing = true;
+        fsstarttime = new Date();
         setTimeout(function () {
             audio.play();
             isunpausing = false;
@@ -596,6 +604,10 @@ function pausebuttonborderchanger() {
 }
 function game() {
     "use strict";
+    if (isfreestyle) {
+        currentbeat = 0;
+        interludebeatsplusdelay = 0;
+    }
     if (bullseyecript) {
         //settling of elements
         document.getElementById("pause").style.display = "block";
@@ -619,8 +631,11 @@ function game() {
             context.fillStyle = "rgba(0, 0, 0, 1)";
             context.fillRect(0, 0, cwidth, cheight);
             circle(score.x, score.y, score.rad, score.col, score.wid, score.strokecolor);
+            
+            if (!isfreestyle) {
             scoringcenter();
-            barsinthegame()
+            barsinthegame();
+            }
             //screentitle
             context.fillStyle = "white";
             context.font = "bold 75px helvetica";
@@ -657,6 +672,7 @@ function pause() {
         gamepause = !gamepause;
         if (gamepause) {
             clearInterval(gameplay);
+            clearInterval(bullseyefs);
             mainmenu = setInterval(function () {
                 mainmenucode();
             }, 1000 / 60);
@@ -701,6 +717,9 @@ function pause() {
                 context.fillStyle = "rgba(0, 0, 0, 1)";
                 context.fillRect(0, 0, cwidth, cheight);
                 audio.play();
+                bullseyefs = setInterval(function() {
+                    freestyleloop();
+                }, 1000 /60);
                 gameplay = setInterval(function () {
                     game();
                 }, 1000 / fps);

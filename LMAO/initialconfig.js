@@ -22,6 +22,7 @@ var startingcalibrate = true;
 var endscreenscript = false;
 var normalgamemodescript = false;
 var highscorescript = false;
+var bullseyefsscript = false;
 
 //declare this script variables
 var ismouseactionokay = false;

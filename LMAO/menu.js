@@ -39,6 +39,7 @@ function grabbing() {
 function ungrabbing() {
     'use strict';
     isgrabbing = false;
+    fsnodoublevalue = false;
 }
     
 var normalgamemode = {
@@ -134,7 +135,14 @@ var songart5location = {
 
  
     
-
+function tolunchfs() {
+    "use strict";
+    bullseyefsscript = true;
+    tolunchgame();
+    bullseyefs = setInterval(function () {
+        freestyleloop();
+    }, 1000/60);
+}
 
 function tolunchgame() {
     "use strict";
@@ -436,7 +444,11 @@ function mainmenucode() {
             if (mouseclicked) {
                 mouseclicked = false;
                 if (isfreestyle) {
+                    //ori game var set has to set first
+                    bulleyesvarset();
+                    fsbullseyesvarset();
                     
+                    tolunchfs();
                 } else {
                     bulleyesvarset();
                     tolunchgame();
