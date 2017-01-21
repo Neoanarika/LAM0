@@ -1,0 +1,55 @@
+<!DOCTYPE html>    
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+        <title>Beats</title>
+        <meta name="description" content="Beats...">
+        <link rel = "stylesheet" type = "text/css" href = "styles.css"/>
+        
+    
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://cdn.rawgit.com/weepy/jquery.path/master/jquery.path.js"></script>
+        <script src="leap-0.6.4.js"></script>
+        <script src="leap-plugins-0.1.12.js"></script>
+       
+        
+    </head>
+    <body>
+        
+        <div id="bodyelement">
+            
+            <canvas id="maincanvas" width="1600" height="900" onmousemove="cords(event)" onclick="mousedown()" onmousedown="grabbing()" onmouseup="ungrabbing()" ></canvas>
+            <p align="center" id="pause" onmousemove="cords(event)" onclick="mousedown()" onmousedown="grabbing()" onmouseup="ungrabbing()"> Pause Game</p>
+            <p id="mainmenunormal" align="center" onmousemove="cords(event)" onclick="mousedown()" onmousedown="grabbing()" onmouseup="ungrabbing()"> Normal Gamemode</p>
+            <p id="returntomain" align="center" onmousemove="cords(event)" onclick="mousedown()" onmousedown="grabbing()" onmouseup="ungrabbing()"> Return To Menu!</p>
+            <p id="ismouseactionokay" align="center" onmousemove="cords(event)" onclick="mousedown()" onmousedown="grabbing()" onmouseup="ungrabbing()"> Is Mouse Action Okay?</p>
+            <img onmousemove="cords(event)" id="art0" src="0/0.jpg" onclick="mousedown()" onmousedown="grabbing()" onmouseup="ungrabbing()"/>
+            <img onmousemove="cords(event)" id="art1" src="1/1.png" onclick="mousedown()" onmousedown="grabbing()" onmouseup="ungrabbing()"/>
+            <img onmousemove="cords(event)" id="art2" src="2/2.jpg" onclick="mousedown()" onmousedown="grabbing()" onmouseup="ungrabbing()"/>
+            <img onmousemove="cords(event)" id="art3" src="3/3.jpg" onclick="mousedown()" onmousedown="grabbing()" onmouseup="ungrabbing()"/>
+            <img onmousemove="cords(event)" id="art4" src="4/4.png" onclick="mousedown()" onmousedown="grabbing()" onmouseup="ungrabbing()"/>
+            <img onmousemove="cords(event)" id="art5" src="5/5.jpg" onclick="mousedown()" onmousedown="grabbing()" onmouseup="ungrabbing()"/>
+            <img onmousemove="cords(event)" id="purplehand" src="purplenormright.png" onclick="mousedown()" onmousedown="grabbing()" onmouseup="ungrabbing()"/>
+
+            <script src="initialconfig.js"></script>
+            <script id="script" src="menu.js"></script>
+            <script src="endscreen.js"></script>
+            <script src="bullseyescript.js"></script>
+            
+            <script src="highscore.js"></script>
+            
+            <script src="boombayahscript.js"></script>
+            <script src="TTscript.js"></script>
+            <script src="oohahhscript.js"></script>
+            <script src="whistle.js"></script>
+            <script src="helloscript.js"></script>
+            
+            
+            <script src="leapmotion.js"></script>
+            
+        </div>
+        
+    </body>
+</html>
