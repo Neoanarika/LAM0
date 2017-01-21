@@ -3,7 +3,48 @@
 		<head>
 		<meta charset="UTF-8">
 		<script>
-		var bpm = 88; //BPM  for bullseye
+		var handVelocitySum = 0;
+		var handVelocitySum = 0;
+		var handVelocitySum = 0;
+		//ML's song runs at 88 bpm
+		var bpm = 88;
+		// velocity of hand required to play song at original bpm
+		var velocity120 = 480;
+		var bpmToPlay;
+		var controller = new Leap.Controller({
+		                       enableGestures: true,
+		                       frameEventName: 'animationFrame'
+		                       });
+		controller.on('frame', function(frame){
+		  if (frame.hands.length > 0 && frame.valid){
+		    var hand = frame.hands[0];
+		    //obtains the resultant velocity of the palm in each frame
+		    function obtainVelocity (hand) {
+		      var handX = hand.palmVelocity[0];
+		      var handY = hand.palmVelocity[1];
+		      handVelocity = Math.sqrt(handX * handX + handY * handY);
+		      return handVelocity;
+		    }
+		    for (var i = 0; i < 30; i++) {
+		      //getting the hand object from that specified history frame
+		      var handFromFrame = controller.frame(i).hand(hand.id);
+		      if( handFromFrame.valid ){
+		        var handVelocity = obtainVelocity(handFromFrame);
+		        handVelocitySum += handVelocity;
+		      }
+		    }
+		    //rounding off to the nearest 10s.
+		    var handVelocityAvg = Math.round(handVelocitySum / 60 / 10) * 10;
+		    handVelocitySum = 0;
+		    //rounding off to the nearest 10s.
+		    bpmToPlay = Math.round((bpm * handVelocityAvg / velocity120) / 10) * 10;
+		    console.log(bpmToPlay);
+		  }
+		});
+
+        controller.connect();
+        /*-----------------------*/
+		//var bpm = 88; //BPM  for bullseye
 
 		//audio
 		var audio = [];
@@ -41,72 +82,84 @@
 
 				var timeminute = time/60;
 				var averageBPM = pressed/timeminute; //Beats per minute
-				song(averageBPM);
+				if(bpmToPlay <= 0){
+					song(averageBPM);
+				}else{
+					song(bpmToPlay);
+				}
 
 			}, 1000/60);
-		}
+
+			setInterval(function(){
+				play()	
+			},200);
+		}	
 
 		var alpha = -0.0; // Delay time best values are between 0.0 to -1.0
 		var bpmchange = false;
 
 		function song(averageBPM){
 			console.log("Average BPM : ", averageBPM);
-			console.log(bpm*1.05);
-			console.log(bpm*1.15);
+			// console.log(bpm*1.05);
+			// console.log(bpm*1.15);
+
 			//For debugging
 			if (averageBPM < bpm * 0.55) {
 				current = -5;
-				bpmchange = true;
 			} else if(averageBPM < bpm*0.65){
 				current = -4;
-				bpmchange = true;
 			} else if(averageBPM < bpm*0.75){
 				current = -3;
-				bpmchange = true;
 			} else if(averageBPM < bpm*0.85){
 				current = -2;
-				bpmchange = true;
 			} else if(averageBPM < bpm*0.95){
 				current = -1;
-				bpmchange = true;
 			} else if(averageBPM< bpm*1.05){
 				current = 0;
-				bpmchange = true;
 			} else if(averageBPM < bpm*1.15 ){
 				current = 1;
-				bpmchange = true;
 			}else if(averageBPM< bpm*1.25){
 				current = 2;
-				bpmchange = true;
 			}
 			else if(averageBPM < bpm*1.35){
 				current = 3;
-				bpmchange = true;
 			}
 			else if(averageBPM < bpm*1.45){
 				current = 4;
-				bpmchange = true;
 			} else {
 				current = 5;
-				bpmchange = true;
 			}
 			
 			console.log("Song speed (0 is normal) : ", current);
 		    console.log("time: ",time);
 
-		    if (bpmchange){
-		    	bpmchange = false;
-		    	audio[current+5].currentTime = time/((current+5)*0.1+0.5) - alpha;
-			    audio[current+5].play();
-			    if(PreviousCurrent >-6){
-			    	audio[PreviousCurrent+5].pause();
-				}
-			    PreviousCurrent = current;
-			}
+		    PreviousCurrent = current;
 
 		};
 
-			window.addEventListener("load", main);
+		function play(){
+			audio[current+5].currentTime = time/((current+5)*0.1+0.5) - alpha;
+		    audio[current+5].play();
+		    if(PreviousCurrent >-6){
+	    		for(var i = 0;i<11;i++){
+	    			if((current + 5) != i){
+	    				audio[i].pause();
+	    			}
+	    		}
+			}
+		    setTimeout(function(){
+		    	if(PreviousCurrent >-6){
+		    		for(var i = 0;i<11;i++){
+		    			if((current + 5) != i){
+		    				audio[i].pause();
+		    			}
+		    		}
+				}
+		    },0.1);
+		}
+		
+		window.addEventListener("load", main);
+		
 		</script>
 		</head>
 	
