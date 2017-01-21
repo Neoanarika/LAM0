@@ -1,116 +1,55 @@
-<!DOCTYPE html>
-	<html>
-		<head>
-		<meta charset="UTF-8">
-		<script>
-		var bpm = 88; //BPM  for bullseye
+<!DOCTYPE html>    
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+        <title>Beats</title>
+        <meta name="description" content="Beats...">
+        <link rel = "stylesheet" type = "text/css" href = "styles.css"/>
+        
+    
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://cdn.rawgit.com/weepy/jquery.path/master/jquery.path.js"></script>
+        <script src="leap-0.6.4.js"></script>
+        <script src="leap-plugins-0.1.12.js"></script>
+       
+        
+    </head>
+    <body>
+        
+        <div id="bodyelement">
+            
+            <canvas id="maincanvas" width="1600" height="900" onmousemove="cords(event)" onclick="mousedown()" onmousedown="grabbing()" onmouseup="ungrabbing()" ></canvas>
+            <p align="center" id="pause" onmousemove="cords(event)" onclick="mousedown()" onmousedown="grabbing()" onmouseup="ungrabbing()"> Pause Game</p>
+            <p id="mainmenunormal" align="center" onmousemove="cords(event)" onclick="mousedown()" onmousedown="grabbing()" onmouseup="ungrabbing()"> Normal Gamemode</p>
+            <p id="returntomain" align="center" onmousemove="cords(event)" onclick="mousedown()" onmousedown="grabbing()" onmouseup="ungrabbing()"> Return To Menu!</p>
+            <p id="ismouseactionokay" align="center" onmousemove="cords(event)" onclick="mousedown()" onmousedown="grabbing()" onmouseup="ungrabbing()"> Is Mouse Action Okay?</p>
+            <img onmousemove="cords(event)" id="art0" src="0/0.jpg" onclick="mousedown()" onmousedown="grabbing()" onmouseup="ungrabbing()"/>
+            <img onmousemove="cords(event)" id="art1" src="1/1.png" onclick="mousedown()" onmousedown="grabbing()" onmouseup="ungrabbing()"/>
+            <img onmousemove="cords(event)" id="art2" src="2/2.jpg" onclick="mousedown()" onmousedown="grabbing()" onmouseup="ungrabbing()"/>
+            <img onmousemove="cords(event)" id="art3" src="3/3.jpg" onclick="mousedown()" onmousedown="grabbing()" onmouseup="ungrabbing()"/>
+            <img onmousemove="cords(event)" id="art4" src="4/4.png" onclick="mousedown()" onmousedown="grabbing()" onmouseup="ungrabbing()"/>
+            <img onmousemove="cords(event)" id="art5" src="5/5.jpg" onclick="mousedown()" onmousedown="grabbing()" onmouseup="ungrabbing()"/>
+            <img onmousemove="cords(event)" id="purplehand" src="purplenormright.png" onclick="mousedown()" onmousedown="grabbing()" onmouseup="ungrabbing()"/>
 
-		//audio
-		var audio = [];
-		var val = 0.5;
-		for(var s = 0; s < 11; s++){
-			audio[s] = new Audio("bullseye/bullseye"+Math.round(val*10)/10+".mp3")
-			val += 0.1;
-		}
-
-		// No of space bar 
-		var pressed  = 0;
-
-		//Previous file being played
-		var current = 0; // 0 is the normal speed file
-		var PreviousCurrent = -6; //Previous file
-		//Start time of the song 
-		var starttime = new Date();
-		var time = 0; //In seconds
-
-		function main(){
-
-			audio[5].play(); //Inital audio file
-
-			//Game loop
-			document.addEventListener('keyup', function(event) {
-				    if(event.keyCode == 32) {
-				    	pressed += 1; // this depends on the keyboard type and the 
-				    }
-			 })
-
-			setInterval(function(){
-				var nowtime = new Date();
-				var laspedtime = nowtime - starttime;
-				time = laspedtime / 1000;
-
-				var timeminute = time/60;
-				var averageBPM = pressed/timeminute; //Beats per minute
-				song(averageBPM);
-
-			}, 1000/60);
-		}
-
-		var alpha = -0.0; // Delay time best values are between 0.0 to -1.0
-		var bpmchange = false;
-
-		function song(averageBPM){
-			console.log("Average BPM : ", averageBPM);
-			console.log(bpm*1.05);
-			console.log(bpm*1.15);
-			//For debugging
-			if (averageBPM < bpm * 0.55) {
-				current = -5;
-				bpmchange = true;
-			} else if(averageBPM < bpm*0.65){
-				current = -4;
-				bpmchange = true;
-			} else if(averageBPM < bpm*0.75){
-				current = -3;
-				bpmchange = true;
-			} else if(averageBPM < bpm*0.85){
-				current = -2;
-				bpmchange = true;
-			} else if(averageBPM < bpm*0.95){
-				current = -1;
-				bpmchange = true;
-			} else if(averageBPM< bpm*1.05){
-				current = 0;
-				bpmchange = true;
-			} else if(averageBPM < bpm*1.15 ){
-				current = 1;
-				bpmchange = true;
-			}else if(averageBPM< bpm*1.25){
-				current = 2;
-				bpmchange = true;
-			}
-			else if(averageBPM < bpm*1.35){
-				current = 3;
-				bpmchange = true;
-			}
-			else if(averageBPM < bpm*1.45){
-				current = 4;
-				bpmchange = true;
-			} else {
-				current = 5;
-				bpmchange = true;
-			}
-			
-			console.log("Song speed (0 is normal) : ", current);
-		    console.log("time: ",time);
-
-		    if (bpmchange){
-		    	bpmchange = false;
-		    	audio[current+5].currentTime = time/((current+5)*0.1+0.5) - alpha;
-			    audio[current+5].play();
-			    if(PreviousCurrent >-6){
-			    	audio[PreviousCurrent+5].pause();
-				}
-			    PreviousCurrent = current;
-			}
-
-		};
-
-			window.addEventListener("load", main);
-		</script>
-		</head>
-	
-	<body>
-		
-	</body>
+            <script src="initialconfig.js"></script>
+            <script id="script" src="menu.js"></script>
+            <script src="endscreen.js"></script>
+            <script src="bullseyescript.js"></script>
+            
+            <script src="highscore.js"></script>
+            
+            <script src="boombayahscript.js"></script>
+            <script src="TTscript.js"></script>
+            <script src="oohahhscript.js"></script>
+            <script src="whistle.js"></script>
+            <script src="helloscript.js"></script>
+            
+            
+            <script src="leapmotion.js"></script>
+            
+        </div>
+        
+    </body>
 </html>
