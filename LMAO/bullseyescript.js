@@ -73,6 +73,7 @@ var huegreen = false;
 function bulleyesvarset() {
     'use strict';
     bpm = 88;
+    obpm = 88
     point = 0;
     pressscore = 0;
     pressedyet = 0;
@@ -108,13 +109,13 @@ function bulleyesvarset() {
     endgametitley = 175;
     count = 0;
     songno = 1;
-    part1 = 64;
-    part2 = 32;
-    part3 = 100;
-    part4 = 32;
-    part5 = 128;
-    part6 = 36;
-    part7 = 107;
+    part1 = 0;
+    part2 = 0;
+    part3 = 0;
+    part4 = 0;
+    part5 = 0;
+    part6 = 0;
+    part7 = 0;
 
 }
 
@@ -259,7 +260,7 @@ function regionspeeds() {
             game();
         }, 1000 / fps);
     }else if(currentbeat > (part1 + part2 +part3 +part4 + part5)){
-        huegreen = true;
+        huered = true;
     }else if(currentbeat > (part1 + part2 +part3 +part4 )){
         huered = false;
         huegreen = false;
@@ -755,7 +756,7 @@ function game() {
             context.fillText("SPEED UP", 550, 500);
         } else if (huegreen) {
             context.fillStyle = "red";
-        context.font = "bold 100px helvetica";
+            context.font = "bold 100px helvetica";
         context.fillText("Normal Speed", 475, 500);
         }
                 

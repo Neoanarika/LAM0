@@ -12,6 +12,7 @@ function whistlevarset() {
     'use strict';
     //change
     bpm = 103;
+    obpm = 103;
     music = "4/whistle103.mp3";
     songfulltimebeats = 313;
     interludebeatsplusdelay = 6;
@@ -22,6 +23,13 @@ function whistlevarset() {
     endgametitlex = 500;
     endgametitley = 175;
     songno = 4;
+    part1 = 0;
+    part2 = 0;
+    part3 = 0;
+    part4 = 0;
+    part5 = 0;
+    part6 = 0;
+    part7 = 0;
 
     
     //dont change

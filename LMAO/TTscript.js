@@ -12,7 +12,8 @@ function TTvarset() {
     'use strict';
     //change
     bpm = 130;
-    music = "3/TT130.mp3";
+    obpm = 130;
+    music = "3/TT.mp3";
     songfulltimebeats = 454;
     interludebeatsplusdelay = 36;
     songdelayms = 200;
@@ -22,6 +23,13 @@ function TTvarset() {
     endgametitlex = 625;
     endgametitley = 175;
     songno = 3;
+    part1 = 35;
+    part2 = 16;
+    part3 = 0;
+    part4 = 0;
+    part5 = 0;
+    part6 = 0;
+    part7 = 0;
 
     
     //dont change
