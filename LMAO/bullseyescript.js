@@ -530,19 +530,31 @@ function scoringcenter() {
     "use strict";
     context.fillStyle = "black";
     context.font = "bold 100px helvetica";
-    if (point < 10) {
-        context.fillText(point, 770, 485);
-    } else if (point < 100) {
-        context.fillText(point, 745, 485);
-    } else if (point < 1000) {
-        context.fillText(point, 715, 485);
-    } else if (point < 9001) {
-        context.font = "bold 80px helvetica";
-        context.fillText(point, 710, 480);
-    } else {
-        context.font = "bold 60px helvetica";
-        context.fillText("OVER", 715, 450);
-        context.fillText("9000!", 727.5, 500);
+    if(isfreestyle){
+        if (Math.round(fsbpm) < 10) {
+            context.fillText(Math.round(fsbpm), 770, 485);
+        }
+        else if(Math.round(fsbpm)< 100){
+            context.fillText(Math.round(fsbpm), 755, 485);
+
+        }else{
+            context.fillText(Math.round(fsbpm), 715, 485);
+        }
+    }else{
+        if (point < 10) {
+            context.fillText(point, 770, 485);
+        } else if (point < 100) {
+            context.fillText(point, 745, 485);
+        } else if (point < 1000) {
+            context.fillText(point, 715, 485);
+        } else if (point < 9001) {
+            context.font = "bold 80px helvetica";
+            context.fillText(point, 710, 480);
+        } else {
+            context.font = "bold 60px helvetica";
+            context.fillText("OVER", 715, 450);
+            context.fillText("9000!", 727.5, 500);
+        }
     }
 }
 
