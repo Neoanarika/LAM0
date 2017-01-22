@@ -58,6 +58,16 @@ var spb = 1;
 var fps = 30;
 var count = 0;
 var songno = 1;
+var part1 = 64;
+var part2 = 32;
+var part3 = 100;
+var part4 = 32;
+var part5 = 128;
+var part6 = 36;
+var part7 = 107;
+var obpm = 88;
+var huered = false;
+var huegreen = false;
 
 
 function bulleyesvarset() {
@@ -98,16 +108,23 @@ function bulleyesvarset() {
     endgametitley = 175;
     count = 0;
     songno = 1;
-    gamecalulation();
+    part1 = 64;
+    part2 = 32;
+    part3 = 100;
+    part4 = 32;
+    part5 = 128;
+    part6 = 36;
+    part7 = 107;
+
 }
 
 function gamecalulation() {
     //calcuations
     if (bpm < 60) {
-        framelimit = 120;
+        framelimit = 100;
     } else if (bpm < 120) {
         framelimit = 80;
-    } else if (bpm < 240) {
+    } else if (bpm < 140) {
         framelimit = 60;
     } else {
         framelimit = 40;
@@ -219,6 +236,89 @@ right 39
 space - 32
 */
 
+function regionspeeds() {
+    
+    if(currentbeat > (part1 + part2 +part3 +part4 + part5 + part6)){
+        huered = false;
+        huegreen = false;
+        bpm = obpm;
+        gamecalulation();
+        clearInterval(gameplay);
+        gameplay = setInterval(function () {
+            game();
+        }, 1000 / fps);
+    } else if(currentbeat > (part1 + part2 +part3 +part4 + part5 - 8)){
+        huegreen = true;
+    }else if(currentbeat > (part1 + part2 +part3 +part4 + part5)){
+        huered = false;
+        huegreen = false;
+        bpm = obpm * 1.25;
+        gamecalulation();
+        clearInterval(gameplay);
+        gameplay = setInterval(function () {
+            game();
+        }, 1000 / fps);
+    }else if(currentbeat > (part1 + part2 +part3 +part4 + part5)){
+        huegreen = true;
+    }else if(currentbeat > (part1 + part2 +part3 +part4 )){
+        huered = false;
+        huegreen = false;
+        bpm = obpm;
+        gamecalulation();
+        clearInterval(gameplay);
+        gameplay = setInterval(function () {
+            game();
+        }, 1000 / fps);
+    }else if(currentbeat > (part1 + part2 +part3 +part4 - 8)){
+        huegreen = true;
+    }else if(currentbeat > (part1 + part2 +part3)){
+        huered = false;
+        huegreen = false;
+        bpm = obpm * 1.25;
+        gamecalulation();
+        clearInterval(gameplay);
+        gameplay = setInterval(function () {
+            game();
+        }, 1000 / fps);
+    }else if(currentbeat > (part1 + part2 +part3 - 8)){
+        huered = true;
+    }else if(currentbeat > (part1 + part2)){
+        huered = false;
+        huegreen = false;
+        bpm = obpm;
+        gamecalulation();
+        clearInterval(gameplay);
+        gameplay = setInterval(function () {
+            game();
+        }, 1000 / fps);
+        //#b00035
+    }else if(currentbeat > (part1 + part2 - 8)){
+        huegreen = true;
+    }else if(currentbeat > part1){
+        huered = false;
+        huegreen = false;
+        bpm = obpm * 1.25;
+        gamecalulation();
+        clearInterval(gameplay);
+        gameplay = setInterval(function () {
+            game();
+        }, 1000 / fps);
+    }else if(currentbeat > part1 - 8){
+        huered = true
+    }else {
+        huered = false;
+        huegreen = false;
+        bpm = obpm;
+        gamecalulation();
+        clearInterval(gameplay);
+        gameplay = setInterval(function () {
+            game();
+        }, 1000 / fps);
+    }
+}
+
+        
+ 
 function mousedown() {
     "use strict";
     mouseclicked = true;
@@ -565,8 +665,22 @@ function render() {
         context.fillRect(0, 0, cwidth, cheight);
     }
     //screenrefresh
+    if (huered) {
+    context.fillStyle = "rgba(255, 0, 0, 0.05)";
+    context.fillRect(0, 0, cwidth, cheight);
+    context.fillStyle = "rgba(0, 0, 0, 0.1)";
+    context.fillRect(0, 0, cwidth, cheight);
+    
+    } else if (huegreen) {
+    context.fillStyle = "rgba(0, 255, 0, 0.05)";
+    context.fillRect(0, 0, cwidth, cheight);
+    context.fillStyle = "rgba(0, 0, 0, 0.1)";
+    context.fillRect(0, 0, cwidth, cheight);
+    } else {
     context.fillStyle = "rgba(0, 0, 0, 0.05)";
     context.fillRect(0, 0, cwidth, cheight);
+    }
+    
     //screentitle
     context.fillStyle = "white";
     context.font = "bold 75px helvetica";
@@ -616,6 +730,7 @@ function pausebuttonborderchanger() {
 }
 function game() {
     "use strict";
+    regionspeeds();
     if (isfreestyle) {
         currentbeat = 0;
         interludebeatsplusdelay = 0;
@@ -633,6 +748,18 @@ function game() {
         }
         update();
         render();
+            
+        if (huered) {
+            context.fillStyle = "green";
+            context.font = "bold 100px helvetica";
+            context.fillText("SPEED UP", 550, 500);
+        } else if (huegreen) {
+            context.fillStyle = "red";
+        context.font = "bold 100px helvetica";
+        context.fillText("Normal Speed", 475, 500);
+        }
+                
+        
         if ((songfulltimebeats + 1) < currentbeat) {
             clearInterval(gameplay);
             clearInterval(pausebuttonchecker);

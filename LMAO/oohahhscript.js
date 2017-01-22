@@ -12,16 +12,24 @@ function oohahhvarset() {
     'use strict';
     //change
     bpm = 142;
-    music = "0/oohahh142.mp3";
+    obpm = 142;
+    music = "0/oohahh.mp3";
     songfulltimebeats = 499;
-    interludebeatsplusdelay = 34;
-    songdelayms = 200;
+    interludebeatsplusdelay = 31;
+    songdelayms = 0;
     songnamestring = "Ooh Ahh - Twice";
     titlex = 500;
     titley = 125;
     endgametitlex = 500;
     endgametitley = 175;
     songno = 0;
+    part1 = 64;
+    part2 = 32;
+    part3 = 100;
+    part4 = 32;
+    part5 = 128;
+    part6 = 36;
+    part7 = 107;
 
     
     //dont change
