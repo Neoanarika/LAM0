@@ -15,7 +15,6 @@
 
   function update () {
     var frame = controller.frame(0);
-    console.log(frame.id);
 
     if (frame.id){
       if (hasHandBeenPutIn == false){
@@ -27,23 +26,16 @@
         //obtains the resultant velocity of the palm in each frame
         hasHandBeenPutIn = true;
         function obtainVelocity (hand) {
-
           var handX = hand.palmVelocity[0];
           var handY = hand.palmVelocity[1];
           handVelocity = Math.sqrt(handX * handX + handY * handY);
           return handVelocity;
-          }
+        }
           var hand = controller.frame(0).hands[0];
-          //hand.palmVelocity is tested to be true
-          /*if(hand){
-            console.log('velocity is: ', hand.palmVelocity);
-          } */
+
           for (var i = 0; i < 30; i++) {
 
-            //hand is tested to be true
-            /*if(hand){
-              console.log('right hand is valid');
-            } */
+
 
             //getting the hand object from that specified history frame
             var handFromFrame = controller.frame(i).hand(hand.id);
@@ -55,10 +47,9 @@
           handVelocitySum = 0;
 
           //rounding off to the nearest 10s.
+          
           bpmToRunSong = Math.round(((OriginalBPMOfSong * handVelocityAvg) / velocityToRunSongAtOriginalBPM) / 10) * 10;
-          if (bpmToRunSong){
-
-          }
+          //console.log("bpm : ", fsbpm);
         }
         else {
           if (hasHandBeenPutIn){

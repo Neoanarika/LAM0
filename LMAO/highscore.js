@@ -237,11 +237,11 @@ function highscore() {
         context.fillText(localStorage.getItem("4") + " points", convertmousepostocanvas(songart4location.x1, true), 650);
         context.font = "bold 35px helvetica";
         context.fillText("BlackPink", convertmousepostocanvas(songart4location.x1, true), 600);
-        //song titles 4
+        //song titles 5
         context.fillStyle = "rgba(255, 255, 255, 1)";
         context.font = "bold 50px helvetica";
         context.fillText("Hello", convertmousepostocanvas(songart5location.x1, true), 550);
-        context.fillText(localStorage.getItem("5") + " points", convertmousepostocanvas(songart4location.x1, true), 650);
+        context.fillText(localStorage.getItem("5") + " points", convertmousepostocanvas(songart5location.x1, true), 650);
         context.font = "bold 35px helvetica";
         context.fillText("Adele", convertmousepostocanvas(songart5location.x1, true), 600);
     }

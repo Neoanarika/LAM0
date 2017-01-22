@@ -13,7 +13,7 @@ function oohahhvarset() {
     //change
     bpm = 142;
     music = "0/oohahh142.mp3";
-    songfulltimebeats = 506;
+    songfulltimebeats = 499;
     interludebeatsplusdelay = 34;
     songdelayms = 200;
     songnamestring = "Ooh Ahh - Twice";

@@ -147,6 +147,10 @@ function tolunchfs() {
 function tolunchgame() {
     "use strict";
     bullseyecript = true;
+    player.col = "#800080";
+    player.strokecolor = "#800080";
+    player.rad = "20";
+    spot.rad = "50";
     document.getElementById("returntomain").style.display = "none";
     document.getElementById("art0").style.display = "none";
     document.getElementById("art1").style.display = "none";
@@ -422,7 +426,10 @@ function mainmenucode() {
             if (mouseclicked) {
                 mouseclicked = false;
                 if (isfreestyle) {
+                    oohahhvarset();
+                    fsoohahhvarset();
                     
+                    tolunchfs();
                 } else {
                    oohahhvarset();
                     tolunchgame(); 
@@ -469,7 +476,10 @@ function mainmenucode() {
             if (mouseclicked) {
                 mouseclicked = false;
                 if (isfreestyle) {
+                    boombayahvarset();
+                    fsboombayahvarset();
                     
+                    tolunchfs();
                 } else {
                     boombayahvarset();
                     tolunchgame();
@@ -491,7 +501,10 @@ function mainmenucode() {
             if (mouseclicked) {
                 mouseclicked = false;
                 if (isfreestyle) {
+                    TTvarset();
+                    fsTTvarset()
                     
+                    tolunchfs();
                 } else {
                     TTvarset();
                     tolunchgame();
@@ -512,7 +525,10 @@ function mainmenucode() {
             if (mouseclicked) {
                 mouseclicked = false;
                 if (isfreestyle) {
+                    whistlevarset();
+                    fswhistlevarset()
                     
+                    tolunchfs();
                 } else {
                     whistlevarset();
                     tolunchgame();
@@ -533,7 +549,9 @@ function mainmenucode() {
             if (mouseclicked) {
                 mouseclicked = false;
                 if (isfreestyle) {
-                    fshellovarset();
+                    hellovarset();
+                    fshellovarset()
+                    
                     tolunchfs();
                 } else {
                     hellovarset();

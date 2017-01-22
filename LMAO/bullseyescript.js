@@ -75,7 +75,7 @@ function bulleyesvarset() {
     music = "1/bullseye88.mp3";
     audio = new Audio(music);
     startspace = 0;
-    songfulltimebeats = 249;
+    songfulltimebeats = 250;
     laspedtime = 0;
     centerbutton = false;
     starttime = new Date();

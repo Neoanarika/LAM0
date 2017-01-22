@@ -13,13 +13,13 @@ function hellovarset() {
     //change
     bpm = 79;
     music = "5/Hello79.mp3";
-    songfulltimebeats = 371;
+    songfulltimebeats = 367;
     interludebeatsplusdelay = 8;
     songdelayms = 570;
     songnamestring = "Hello - Adele";
-    titlex = 500;
+    titlex = 600;
     titley = 125;
-    endgametitlex = 500;
+    endgametitlex = 600;
     endgametitley = 175;
     songno = 5;
 

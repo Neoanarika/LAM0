@@ -13,6 +13,7 @@ var fsnowtime = 0;
 var fslaspedtime = 0;
 var fsnoofspacebar = 0;
 var fsnodoublevalue = false;
+var abpm = 0;
 var fsbpm = 0;
 var fsbpm15 = 0;
 var fsbpm14 = 0;
@@ -69,52 +70,71 @@ function fsbullseyesvarset() {
     fsbpm05 = bpm * 0.5;
 }
 function freestyleloop() {
+    console.log("FSBPM : ",fsbpm);
+    //console.log('Fslaspedsec ',fslaspedsec);
     if (!isleapmotionin) {
-    fslaspedsec = fslaspedtime / 1000;
-    if (currentpress > 0) {
-        fsnowtime = new Date();
-        fslaspedtime = fsnowtime - fsstarttime;
-        if (startspace < 2) {
-            if (!fsnodoublevalue) {
-                fsnoofspacebar +=1;
-                fsnodoublevalue = true;
+        if (currentpress > 0) {
+            if (startspace < 2) {
+                if (!fsnodoublevalue) {
+                    fsnoofspacebar +=1;
+                    fsnodoublevalue = true;
+                    var fssec = fslaspedtime / 1000;
+                    var fsbps = fsnoofspacebar / fssec;
+                    fsbpm = fsbps * 60;
+                }
             }
-        }
-        var fssec = fslaspedtime / 1000;
-        var fsbps = fsnoofspacebar / fssec;
-        fsbpm = fsbps * 60;
-    }   
+        }   
     }
-
-    
+    fsnowtime = new Date();
+    fslaspedtime = fsnowtime - fsstarttime;
+    fslaspedsec = fslaspedtime / 1000;
     if (fsbpm < fsbpm05) {
-        bpm = fsbpm05;
+        abpm = fsbpm05;
+        player.col = "rgba(255, 0, 0, 1)";
+        player.strokecolor = "rgba(255, 0, 0, 1)";
+        player.rad = "60";
+        spot.rad = "0";
     } else if (fsbpm < fsbpm06) {
-        bpm = fsbpm06;
+        abpm = fsbpm06;
     } else if (fsbpm < fsbpm07) {
-        bpm = fsbpm07;
+        abpm = fsbpm07;
+        player.col = "rgba(255, 0, 127, 1)";
+        player.strokecolor = "rgba(255, 0, 127, 1)";
+        player.rad = "50";
+        spot.rad = "0";
     } else if (fsbpm < fsbpm08) {
-        bpm = fsbpm08;
+        abpm = fsbpm08;
     } else if (fsbpm < fsbpm09) {
-        bpm = fsbpm09;
+        abpm = fsbpm09;
     } else if (fsbpm < fsbpm10) {
-        bpm = fsbpm10;
+        abpm = fsbpm10;
+        player.col = "rgba(255, 0, 255, 1)";
+        player.strokecolor = "rgba(255, 0, 255, 1)";
+        player.rad = "40";
+        spot.rad = "0";
     } else if (fsbpm < fsbpm11) {
-        bpm = fsbpm11;
+        abpm = fsbpm11;
     } else if (fsbpm < fsbpm12) {
-        bpm = fsbpm12;
+        abpm = fsbpm12;
     } else if (fsbpm < fsbpm13) {
-        bpm = fsbpm13;
+        abpm = fsbpm13;
+        player.col = "rgba(127, 0, 255, 1)";
+        player.strokecolor = "rgba(127, 0, 255, 1)";
+        player.rad = "30";
+        spot.rad = "0";
     } else if (fsbpm < fsbpm14) {
-        bpm = fsbpm14;
+        abpm = fsbpm14;
     } else {
-        bpm = fsbpm15;
+        abpm = fsbpm15;
+        player.col = "rgba(0, 0, 255, 1)";
+        player.strokecolor = "rgba(0, 0, 255, 1)";
+        player.rad = "20";
+        spot.rad = "0";
     }
     setTimeout(function() {
-        fsprevbpm = bpm;
+        fsprevbpm = abpm;
     }, 1000 / 60);
-
-    if (Math.abs(fsprevbpm - bpm) > 0) {
+    if (Math.abs(fsprevbpm - abpm) > 0) {
         audio.pause();
         if (fsbpm < fsbpm05) {
             music = aud05;
@@ -171,5 +191,5 @@ function freestyleloop() {
 
 var bullseyefs = setInterval(function() {
     freestyleloop();
-}, 1000 /10);
+}, 1000 /5);
 clearInterval(bullseyefs);
