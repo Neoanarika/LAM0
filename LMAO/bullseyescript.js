@@ -109,13 +109,13 @@ function bulleyesvarset() {
     endgametitley = 175;
     count = 0;
     songno = 1;
-    part1 = 0;
-    part2 = 0;
-    part3 = 0;
-    part4 = 0;
-    part5 = 0;
-    part6 = 0;
-    part7 = 0;
+    part1 = 5000;
+    part2 = 5000;
+    part3 = 5000;
+    part4 = 5000;
+    part5 = 5000;
+    part6 = 5000;
+    part7 = 5000;
 
 }
 
@@ -248,7 +248,7 @@ function regionspeeds() {
         gameplay = setInterval(function () {
             game();
         }, 1000 / fps);
-    } else if(currentbeat > (part1 + part2 +part3 +part4 + part5 - 8)){
+    } else if(currentbeat > (part1 + part2 +part3 +part4 + part5 +part6 - 4)){
         huegreen = true;
     }else if(currentbeat > (part1 + part2 +part3 +part4 + part5)){
         huered = false;
@@ -259,7 +259,7 @@ function regionspeeds() {
         gameplay = setInterval(function () {
             game();
         }, 1000 / fps);
-    }else if(currentbeat > (part1 + part2 +part3 +part4 + part5)){
+    }else if(currentbeat > (part1 + part2 +part3 +part4 + part5 -4)){
         huered = true;
     }else if(currentbeat > (part1 + part2 +part3 +part4 )){
         huered = false;
@@ -270,7 +270,7 @@ function regionspeeds() {
         gameplay = setInterval(function () {
             game();
         }, 1000 / fps);
-    }else if(currentbeat > (part1 + part2 +part3 +part4 - 8)){
+    }else if(currentbeat > (part1 + part2 +part3 +part4 - 4)){
         huegreen = true;
     }else if(currentbeat > (part1 + part2 +part3)){
         huered = false;
@@ -281,7 +281,7 @@ function regionspeeds() {
         gameplay = setInterval(function () {
             game();
         }, 1000 / fps);
-    }else if(currentbeat > (part1 + part2 +part3 - 8)){
+    }else if(currentbeat > (part1 + part2 +part3 - 4)){
         huered = true;
     }else if(currentbeat > (part1 + part2)){
         huered = false;
@@ -293,7 +293,7 @@ function regionspeeds() {
             game();
         }, 1000 / fps);
         //#b00035
-    }else if(currentbeat > (part1 + part2 - 8)){
+    }else if(currentbeat > (part1 + part2 - 4)){
         huegreen = true;
     }else if(currentbeat > part1){
         huered = false;
@@ -304,7 +304,7 @@ function regionspeeds() {
         gameplay = setInterval(function () {
             game();
         }, 1000 / fps);
-    }else if(currentbeat > part1 - 8){
+    }else if(currentbeat > part1 - 4){
         huered = true
     }else {
         huered = false;

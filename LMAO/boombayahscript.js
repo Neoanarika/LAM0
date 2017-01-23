@@ -25,11 +25,11 @@ function boombayahvarset() {
     songno = 2;
     part1 = 24;
     part2 = 12;
-    part3 = 0;
-    part4 = 0;
-    part5 = 0;
-    part6 = 0;
-    part7 = 0;
+    part3 = 5000;
+    part4 = 5000;
+    part5 = 5000;
+    part6 = 5000;
+    part7 = 5000;
 
     
     //dont change

@@ -23,13 +23,13 @@ function hellovarset() {
     endgametitlex = 600;
     endgametitley = 175;
     songno = 5;
-    part1 = 0;
-    part2 = 0;
-    part3 = 0;
-    part4 = 0;
-    part5 = 0;
-    part6 = 0;
-    part7 = 0;
+    part1 = 5000;
+    part2 = 5000;
+    part3 = 5000;
+    part4 = 5000;
+    part5 = 5000;
+    part6 = 5000;
+    part7 = 5000;
 
     
     //dont change

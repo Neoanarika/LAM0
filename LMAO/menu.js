@@ -146,6 +146,8 @@ function tolunchfs() {
 
 function tolunchgame() {
     "use strict";
+    huegreen = false;
+    huered = false;
     bullseyecript = true;
     player.col = "#800080";
     player.strokecolor = "#800080";
@@ -198,6 +200,7 @@ function mainmenucode() {
     }
     
     if (mainmenuscript) {
+        
         //settling of elements
         document.getElementById("pause").style.display = "none";
         document.getElementById("purplehand").style.display = "block";
@@ -239,6 +242,7 @@ function mainmenucode() {
             document.getElementById("mainmenunormal").style.borderColor = "purple";
         }
         
+    
         //is mouse in freestyle
         if (mousex > freestylelocation.x1 && mousex < freestylelocation.x2 && mousey > freestylelocation.y1 && mousey < freestylelocation.y2) {
             context.fillStyle = "purple";
