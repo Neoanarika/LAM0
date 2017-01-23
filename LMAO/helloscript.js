@@ -12,6 +12,7 @@ function hellovarset() {
     'use strict';
     //change
     bpm = 79;
+    obpm = 79;
     music = "5/Hello79.mp3";
     songfulltimebeats = 367;
     interludebeatsplusdelay = 8;
@@ -22,6 +23,13 @@ function hellovarset() {
     endgametitlex = 600;
     endgametitley = 175;
     songno = 5;
+    part1 = 5000;
+    part2 = 5000;
+    part3 = 5000;
+    part4 = 5000;
+    part5 = 5000;
+    part6 = 5000;
+    part7 = 5000;
 
     
     //dont change

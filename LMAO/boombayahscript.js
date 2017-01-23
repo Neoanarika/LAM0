@@ -12,7 +12,8 @@ function boombayahvarset() {
     'use strict';
     //change
     bpm = 125;
-    music = "2/boombayah125.mp3";
+    obpm = 125;
+    music = "2/boombayah.mp3";
     songfulltimebeats = 495;
     interludebeatsplusdelay = 18;
     songdelayms = 1200;
@@ -22,6 +23,13 @@ function boombayahvarset() {
     endgametitlex = 375;
     endgametitley = 175;
     songno = 2;
+    part1 = 24;
+    part2 = 12;
+    part3 = 5000;
+    part4 = 5000;
+    part5 = 5000;
+    part6 = 5000;
+    part7 = 5000;
 
     
     //dont change
