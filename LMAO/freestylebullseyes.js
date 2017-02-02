@@ -67,44 +67,29 @@ function freestyleloop() {
     fsnowtime = new Date();
     fslaspedtime = fsnowtime - fsstarttime;
     fslaspedsec = fslaspedtime / 1000;
+	abpm = fsbpm;
     if (fsbpm < fsbpm05) {
         abpm = fsbpm05;
         player.col = "rgba(255, 0, 0, 1)";
         player.strokecolor = "rgba(255, 0, 0, 1)";
         player.rad = "60";
         spot.rad = "0";
-    } else if (fsbpm < fsbpm06) {
-        abpm = fsbpm06;
     } else if (fsbpm < fsbpm07) {
-        abpm = fsbpm07;
         player.col = "rgba(255, 0, 127, 1)";
         player.strokecolor = "rgba(255, 0, 127, 1)";
         player.rad = "50";
         spot.rad = "0";
-    } else if (fsbpm < fsbpm08) {
-        abpm = fsbpm08;
-    } else if (fsbpm < fsbpm09) {
-        abpm = fsbpm09;
     } else if (fsbpm < fsbpm10) {
-        abpm = fsbpm10;
         player.col = "rgba(255, 0, 255, 1)";
         player.strokecolor = "rgba(255, 0, 255, 1)";
         player.rad = "40";
         spot.rad = "0";
-    } else if (fsbpm < fsbpm11) {
-        abpm = fsbpm11;
-    } else if (fsbpm < fsbpm12) {
-        abpm = fsbpm12;
     } else if (fsbpm < fsbpm13) {
-        abpm = fsbpm13;
         player.col = "rgba(127, 0, 255, 1)";
         player.strokecolor = "rgba(127, 0, 255, 1)";
         player.rad = "30";
         spot.rad = "0";
-    } else if (fsbpm < fsbpm14) {
-        abpm = fsbpm14;
     } else {
-        abpm = fsbpm15;
         player.col = "rgba(0, 0, 255, 1)";
         player.strokecolor = "rgba(0, 0, 255, 1)";
         player.rad = "20";
