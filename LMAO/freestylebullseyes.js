@@ -119,11 +119,20 @@ function freestyleloop() {
 		audio.playbackRate = abpm / bpm;
 		audio.pause;
 	}
-    
-        
-    
-        
-
+	audio.onended = function() {
+		"use strict";
+		setTimeout(function() {
+			clearInterval(gameplay);
+			clearInterval(bullseyefs);
+			normalgamemodescript = false;
+			mainmenuscript = true;
+			endscreenscript = false;
+			highscorescript = false;
+			mainmenu = setInterval(function () {
+				mainmenucode();
+			}, 1000 / 60);
+		}, 1000);
+	};
 }
 
 
