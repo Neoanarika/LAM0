@@ -89,12 +89,14 @@ function freestyleloop() {
         player.strokecolor = "rgba(127, 0, 255, 1)";
         player.rad = "30";
         spot.rad = "0";
-    } else {
+    } else if (fsbpm < 400){
         player.col = "rgba(0, 0, 255, 1)";
         player.strokecolor = "rgba(0, 0, 255, 1)";
         player.rad = "20";
         spot.rad = "0";
-    }
+    } else {
+		abpm = 401;
+	}
     setTimeout(function() {
         fsprevbpm = abpm;
     }, 1000 / 60);
