@@ -85,6 +85,7 @@ function freestyleloop() {
 	abpm = fsbpm;
     if (fsbpm < fsbpm05) {
         abpm = fsbpm05;
+		fsbpm = fsbpm05 - 1;
         player.col = "rgba(255, 0, 0, 1)";
         player.strokecolor = "rgba(255, 0, 0, 1)";
         player.rad = "60";
@@ -104,13 +105,14 @@ function freestyleloop() {
         player.strokecolor = "rgba(127, 0, 255, 1)";
         player.rad = "30";
         spot.rad = "0";
-    } else if (fsbpm < 400){
+    } else if (fsbpm < 399){
         player.col = "rgba(0, 0, 255, 1)";
         player.strokecolor = "rgba(0, 0, 255, 1)";
         player.rad = "20";
         spot.rad = "0";
     } else {
-		abpm = 401;
+		abpm = 400;
+		fsbpm = 400;
 	}
     setTimeout(function() {
         fsprevbpm = abpm;
