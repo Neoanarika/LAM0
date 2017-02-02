@@ -30,6 +30,8 @@ var fsprevbpm = 0;
 var fslaspedsec = 0;
 var fsmusictime = 0;
 var aud10 = "1/1/1-10.mp3";
+var tenspaces = [5000, 5000, 5000, 5000, 5000, 5000];
+var backtenspaces = [5000, 5000, 5000, 5000, 5000, 5000];
 
 function fsbullseyesvarset() {
     startspace = 0;
@@ -50,16 +52,29 @@ function fsbullseyesvarset() {
     fsbpm05 = bpm * 0.5;
 }
 function freestyleloop() {
-    //console.log('Fslaspedsec ',fslaspedsec);
     if (!isleapmotionin) {
         if (currentpress > 0) {
             if (startspace < 2) {
                 if (!fsnodoublevalue) {
-                    fsnoofspacebar +=1;
+					console.log(tenspaces[fsnoofspacebar] + "+" + fsnoofspacebar);
+					if (tenspaces[fsnoofspacebar] == 5000) {
+						tenspaces[fsnoofspacebar] = fslaspedtime;
+						backtenspaces[fsnoofspacebar] = fslaspedtime;
+					} else {
+						tenspaces[fsnoofspacebar] = fslaspedtime - backtenspaces[fsnoofspacebar];
+						backtenspaces[fsnoofspacebar] = fslaspedtime;
+					}
+					console.log(tenspaces[fsnoofspacebar] + "+" + fsnoofspacebar);
+                    
                     fsnodoublevalue = true;
-                    var fssec = fslaspedtime / 1000;
-                    var fsbps = fsnoofspacebar / fssec;
+					
+                    var fssec = tenspaces[fsnoofspacebar] / 1000;
+                    var fsbps = 5 / fssec;
                     fsbpm = fsbps * 60;
+					fsnoofspacebar +=1;
+					if (fsnoofspacebar > 5) {
+						fsnoofspacebar = 1;
+					}
                 }
             }
         }   
