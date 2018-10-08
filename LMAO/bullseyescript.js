@@ -692,6 +692,7 @@ function render() {
     if (startspace > 1) {
         isunpausing = true;
         fsstarttime = new Date();
+		fsbpm = bpm;
         setTimeout(function () {
             audio.play();
             isunpausing = false;

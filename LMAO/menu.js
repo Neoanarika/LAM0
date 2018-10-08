@@ -138,10 +138,12 @@ var songart5location = {
 function tolunchfs() {
     "use strict";
     bullseyefsscript = true;
-    tolunchgame();
+    
     bullseyefs = setInterval(function () {
         freestyleloop();
     }, 1000/60);
+	audio = new Audio(aud10);
+	tolunchgame();
 }
 
 function tolunchgame() {

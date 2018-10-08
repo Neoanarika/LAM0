@@ -29,32 +29,12 @@ var fsbpm05 = 0;
 var fsprevbpm = 0;
 var fslaspedsec = 0;
 var fsmusictime = 0;
-var aud15 = "1/1/1-15.mp3";
-var aud14 = "1/1/1-14.mp3";
-var aud13 = "1/1/1-13.mp3";
-var aud12 = "1/1/1-12.mp3";
-var aud11 = "1/1/1-11.mp3";
 var aud10 = "1/1/1-10.mp3";
-var aud09 = "1/1/1-9.mp3";
-var aud08 = "1/1/1-8.mp3";
-var aud07 = "1/1/1-7.mp3";
-var aud06 = "1/1/1-6.mp3";
-var aud05 = "1/1/1-5.mp3";
 
 function fsbullseyesvarset() {
     startspace = 0;
     fsnoofspacebar = 0;
-    aud15 = "1/1/1-15.mp3";
-    aud14 = "1/1/1-14.mp3";
-    aud13 = "1/1/1-13.mp3";
-    aud12 = "1/1/1-12.mp3";
-    aud11 = "1/1/1-11.mp3";
     aud10 = "1/1/1-10.mp3";
-    aud09 = "1/1/1-9.mp3";
-    aud08 = "1/1/1-8.mp3";
-    aud07 = "1/1/1-7.mp3";
-    aud06 = "1/1/1-6.mp3";
-    aud05 = "1/1/1-5.mp3";
     
     //calculate
     fsbpm15 = bpm * 1.5;
@@ -70,7 +50,6 @@ function fsbullseyesvarset() {
     fsbpm05 = bpm * 0.5;
 }
 function freestyleloop() {
-    console.log("FSBPM : ",fsbpm);
     //console.log('Fslaspedsec ',fslaspedsec);
     if (!isleapmotionin) {
         if (currentpress > 0) {
@@ -134,56 +113,15 @@ function freestyleloop() {
     setTimeout(function() {
         fsprevbpm = abpm;
     }, 1000 / 60);
-    if (Math.abs(fsprevbpm - abpm) > 0) {
-        audio.pause();
-        if (fsbpm < fsbpm05) {
-            music = aud05;
-            fsmusictime = fslaspedsec/ 0.5 ;
-        } else if (fsbpm < fsbpm06) {
-            music = aud06;
-            fsmusictime = fslaspedsec / 0.6 ;
-        } else if (fsbpm < fsbpm07) {
-            music = aud07;
-            fsmusictime = fslaspedsec / 0.7;
-        } else if (fsbpm < fsbpm08) {
-            music = aud08;
-            fsmusictime = fslaspedsec / 0.8;
-        } else if (fsbpm < fsbpm09) {
-            music = aud09;
-            fsmusictime = fslaspedsec / 0.9;
-        } else if (fsbpm < fsbpm10) {
-            music = aud10;
-            fsmusictime = fslaspedsec / 1.0;
-        } else if (fsbpm < fsbpm11) {
-            music = aud11;
-            fsmusictime = fslaspedsec / 1.1;
-        } else if (fsbpm < fsbpm12) {
-            music = aud12;
-            fsmusictime = fslaspedsec / 1.2;
-        } else if (fsbpm < fsbpm13) {
-            music = aud13;
-            fsmusictime = fslaspedsec / 1.3;
-        } else if (fsbpm < fsbpm14) {
-            music = aud14;
-            fsmusictime = fslaspedsec / 1.4;
-        } else {
-            music = aud15;
-            fsmusictime = fslaspedsec / 1.5;
-        }
-        
-        audio = new Audio(music);
-        audio.currentTime = fsmusictime;
-        if (startspace < 2 && startspace > 0) {
-        audio.play();
-        }
-        gamecalulation();
-        clearInterval(gameplay);
-        gameplay = setInterval(function () {
-            game();
-        }, 1000 / fps);
+
+
+	if (fsprevbpm !== abpm) {
+		audio.playbackRate = abpm / bpm;
+		audio.pause;
+	}
     
         
-    }
+    
         
 
 }

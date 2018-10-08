@@ -76,17 +76,7 @@ function boombayahvarset() {
 function fsboombayahvarset() {
     startspace = 0;
     fsnoofspacebar = 0;
-    aud15 = "2/2/2-15.mp3";
-    aud14 = "2/2/2-14.mp3";
-    aud13 = "2/2/2-13.mp3";
-    aud12 = "2/2/2-12.mp3";
-    aud11 = "2/2/2-11.mp3";
     aud10 = "2/2/2-10.mp3";
-    aud09 = "2/2/2-9.mp3";
-    aud08 = "2/2/2-8.mp3";
-    aud07 = "2/2/2-7.mp3";
-    aud06 = "2/2/2-6.mp3";
-    aud05 = "2/2/2-5.mp3";
     
     //calculate
     fsbpm15 = bpm * 1.5;
